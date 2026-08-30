@@ -7673,8 +7673,8 @@
             font-weight: 600;
         }
     
-<!-- ======================= ÇOK OYUNCULU — CSS ======================= -->
-<style id="mpStyles">
+
+
     .mp-badge {
         position: absolute;
         top: -14px;
@@ -8057,6 +8057,15 @@
         display: none !important;
     }
 
+    .mp-emoji-kutu {
+        display: none;
+        text-align: center;
+        font-size: 120px;
+        line-height: 1.3;
+        margin-bottom: 14px;
+        filter: drop-shadow(0 0 25px rgba(0, 210, 255, .5));
+    }
+
     .mp-cikti {
         text-align: center;
         color: #4ade80;
@@ -8194,8 +8203,12 @@
 
     .mp-gerisayim {
         position: fixed;
-        inset: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         background: rgba(5, 5, 20, .9);
+        -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
         display: none;
         align-items: center;
@@ -8290,7 +8303,6 @@
             font-size: 26px;
         }
     }
-</style>
 
     </style>
 
@@ -8644,7 +8656,7 @@
 <!-- ---------- 1) ODA KUR / KATIL ---------- -->
 <div class="screen" id="mpOdaScreen" style="display:none;">
     <div style="display:flex; align-items:center; margin-bottom:14px;">
-        <button class="back-btn" onclick="mpModlara()">← Modlar</button>
+        <button type="button" class="back-btn" onclick="mpModlara()">← Modlar</button>
         <div style="flex:1; text-align:center;">
             <div class="logo-container"><span class="logo-text" style="font-size:36px;">Çok Oyunculu</span></div>
         </div>
@@ -8663,32 +8675,32 @@
             <div style="color:#a0d0ff; font-size:13px; font-weight:700;">PROFİLİNDEN ALINDI</div>
             <div id="mpBenAd" style="color:#fff; font-size:20px; font-weight:800;">—</div>
         </div>
-        <button class="mp-mini-btn" onclick="mpModlara()">Değiştir</button>
+        <button type="button" class="mp-mini-btn" onclick="mpModlara()">Değiştir</button>
     </div>
 
     <div id="mpKurAlan">
         <label class="mp-label">Oda adı</label>
-        <input class="mp-input" id="mpOdaAdi" maxlength="24" placeholder="örn. Emir'in Odası">
+        <input type="text" class="mp-input" id="mpOdaAdi" maxlength="24" placeholder="örn. Emir'in Odası">
         <label class="mp-check"><input type="checkbox" id="mpSifreVar" onchange="mpSifreToggle()"> Bu odaya şifre
             koy</label>
         <div id="mpSifreAlan" style="display:none;">
             <label class="mp-label">Oda şifresi</label>
-            <input class="mp-input" id="mpSifre" maxlength="20" placeholder="örn. 1234">
+            <input type="password" class="mp-input" id="mpSifre" maxlength="20" placeholder="örn. 1234" autocomplete="new-password">
         </div>
     </div>
 
     <div id="mpKatilAlan" style="display:none;">
         <label class="mp-label">Oda kodu</label>
-        <input class="mp-input mp-kod" id="mpKodGiris" maxlength="5" placeholder="XXXXX" autocomplete="off">
+        <input type="text" class="mp-input mp-kod" id="mpKodGiris" maxlength="5" placeholder="XXXXX" autocomplete="off">
         <div id="mpSifreIsteAlan" style="display:none;">
             <label class="mp-label">Bu oda şifreli</label>
-            <input class="mp-input" id="mpSifreGiris" maxlength="20" placeholder="Şifre">
+            <input type="password" class="mp-input" id="mpSifreGiris" maxlength="20" placeholder="Şifre" autocomplete="current-password">
         </div>
     </div>
 
     <div class="mp-err" id="mpHata"></div>
     <div class="button-group">
-        <button class="primary-btn" id="mpOdaBtn" onclick="mpOdaIslem()">➕ Oda Kur</button>
+        <button type="button" class="primary-btn" id="mpOdaBtn" onclick="mpOdaIslem()">➕ Oda Kur</button>
     </div>
     <p class="mp-hint">Oda kodunu arkadaşına gönder, "Kodla Katıl" sekmesinden girsin.<br>En fazla 4 kişi
         oynayabilir.</p>
@@ -8697,7 +8709,7 @@
 <!-- ---------- 2) LOBBİ ---------- -->
 <div class="screen" id="mpLobiScreen" style="display:none;">
     <div style="display:flex; align-items:center; margin-bottom:14px;">
-        <button class="back-btn" onclick="mpOdadanCik()">← Odadan Çık</button>
+        <button type="button" class="back-btn" onclick="mpOdadanCik()">← Odadan Çık</button>
         <div style="flex:1; text-align:center;">
             <div class="logo-container"><span class="logo-text" style="font-size:32px;">Oyun Odası</span></div>
         </div>
@@ -8709,8 +8721,8 @@
         <div style="color:#a0d0ff; font-size:13px; letter-spacing:2px;">ARKADAŞLARINA BU KODU GÖNDER</div>
         <div class="mp-kod-deger" id="mpLobiKod">—</div>
         <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-            <button class="mp-mini-btn" onclick="mpKodKopyala()">📋 Kodu Kopyala</button>
-            <button class="mp-mini-btn" onclick="mpLinkPaylas()">📤 Davet Linki</button>
+            <button type="button" class="mp-mini-btn" onclick="mpKodKopyala()">📋 Kodu Kopyala</button>
+            <button type="button" class="mp-mini-btn" onclick="mpLinkPaylas()">📤 Davet Linki</button>
             <span class="mp-mini-btn" id="mpLobiSifre" style="cursor:default;">🔓 Herkese açık</span>
         </div>
     </div>
@@ -8726,10 +8738,11 @@
         <div class="mp-chipler" id="mpSayiChipler"></div>
         <div class="mp-ayar-baslik" id="mpSureBaslik">⏱️ SORU SÜRESİ</div>
         <div class="mp-chipler" id="mpSureChipler"></div>
+        <div style="color:#7f9dc4; font-size:14px; text-align:center;" id="mpSureNot"></div>
     </div>
 
     <div class="button-group">
-        <button class="primary-btn" id="mpBaslatBtn" onclick="mpOyunBaslat()">🚀 Oyunu Başlat</button>
+        <button type="button" class="primary-btn" id="mpBaslatBtn" onclick="mpOyunBaslat()">🚀 Oyunu Başlat</button>
     </div>
     <p class="mp-hint" id="mpLobiNot">Arkadaşların katılınca burada görünecek.</p>
 </div>
@@ -8741,7 +8754,7 @@
             <span style="color:#00d2ff; font-size:22px; font-weight:800;" id="mpOyunMod">📝</span>
             <span style="color:#a0d0ff; font-size:16px;" id="mpOyunSoruNo">Soru 1/5</span>
         </div>
-        <button class="back-btn" onclick="mpOdadanCik()" style="padding:10px 18px; font-size:15px;">🚪 Çık</button>
+        <button type="button" class="back-btn" onclick="mpOdadanCik()" style="padding:10px 18px; font-size:15px;">🚪 Çık</button>
     </div>
 
     <div class="mp-skor-tablo" id="mpSkorTablo"></div>
@@ -8755,9 +8768,10 @@
 
     <div id="mpNetlikBar" class="mp-netlik-bar" style="display:none;"></div>
     <div class="mp-flaş-uyari mp-gizle" id="mpFlasUyari">👁️ GÖRSEL GELİYOR! İYİ BAK</div>
-    <div id="mpEmojiKutu" style="display:none; text-align:center; font-size:120px; line-height:1.3; margin-bottom:14px;
-         filter: drop-shadow(0 0 25px rgba(0,210,255,.5));">❓</div>
-    <img class="mp-soru-gorsel mp-gizle" id="mpGorsel" alt="">
+    <div id="mpEmojiKutu" class="mp-emoji-kutu mp-gizle">❓</div>
+    <img class="mp-soru-gorsel mp-gizle" id="mpGorsel" alt="Soru görseli"
+         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+         width="300" height="300">
 
     <div class="question-text" id="mpSoruMetin">—</div>
 
@@ -8765,9 +8779,9 @@
 
     <div id="mpYaziliAlan" style="display:none;">
         <div class="mp-cevap-satir">
-            <input class="mp-input" id="mpYaziliGiris" placeholder="Cevabını yaz…" autocomplete="off"
+            <input type="text" class="mp-input" id="mpYaziliGiris" placeholder="Cevabını yaz…" autocomplete="off"
                 style="margin-bottom:0;">
-            <button class="primary-btn" style="flex:none; padding:15px 28px;" onclick="mpYaziliGonder()">Gönder</button>
+            <button type="button" class="primary-btn" style="flex:none; padding:15px 28px;" onclick="mpYaziliGonder()">Gönder</button>
         </div>
     </div>
 
@@ -8793,7 +8807,7 @@
         🏠 Odaya dönülüyor… <b id="mpSonucSayacSn">10</b> sn
     </div>
     <div class="button-group" style="justify-content:center;">
-        <button class="primary-btn" onclick="mpLobiyeDon()" style="flex:none;">🏠 Hemen Odaya Dön</button>
+        <button type="button" class="primary-btn" onclick="mpLobiyeDon()" style="flex:none;">🏠 Hemen Odaya Dön</button>
     </div>
     <p class="mp-hint">Odaya dönünce kurucu yeni mod / kategori / süre seçip tekrar başlatabilir.<br>Oda kodu aynı
         kalır, kimse çıkmadan oyun devam eder.</p>
@@ -19393,11 +19407,37 @@
         }).join('');
         $('mpKategoriChipler').innerHTML = ch || '<span style="color:#7f9dc4;font-size:14px;">yükleniyor…</span>';
 
-        // Soru sayısı
-        $('mpSayiChipler').innerHTML = [3, 5, 10, 15, 20].map(function (n) {
+        // Soru sayısı — üst sınır artık kategorinin havuzu kadar
+        var maks = r.kategoriSize || 0;
+        var birim = r.mod === 'text' ? 'soru' : 'görsel';
+        var hazir = [5, 10, 15, 20, 30, 40, 50, 75, 100].filter(function (n) { return n <= maks; });
+        if (maks > 0 && hazir.indexOf(maks) === -1) hazir.push(maks);   // "hepsi" seçeneği
+        hazir.sort(function (a, b) { return a - b; });
+
+        var sh = '<div style="color:#a0d0ff;font-size:13px;font-weight:700;width:100%;margin-bottom:2px;">' +
+            'Bu kategoride <b style="color:#00d2ff;">' + maks + '</b> ' + birim + ' var — en fazla ' +
+            maks + ' soru seçebilirsin</div>';
+        sh += hazir.map(function (n) {
+            var etiket = (n === maks && maks > 20) ? n + ' (hepsi)' : n + ' soru';
             return '<button class="mp-chip ' + (r.soruSayisi === n ? 'selected' : '') + '" ' + dis +
-                ' onclick="mpAyar(\'questionCount\',' + n + ')">' + n + ' soru</button>';
+                ' onclick="mpAyar(\'questionCount\',' + n + ')">' + etiket + '</button>';
         }).join('');
+        if (benKurucu) {
+            sh += '<span style="display:flex;align-items:center;gap:6px;">' +
+                '<input type="number" min="1" max="' + maks + '" value="' + r.soruSayisi + '" ' +
+                'onchange="mpAyar(\'questionCount\', this.value)" ' +
+                'style="width:78px;background:rgba(0,0,0,.35);border:2px solid rgba(0,210,255,.5);' +
+                'border-radius:20px;padding:8px 10px;color:#fff;font-size:14px;font-family:inherit;">' +
+                '<span style="color:#7f9dc4;font-size:13px;">/ ' + maks + ' kendi sayını yaz</span></span>';
+        }
+        $('mpSayiChipler').innerHTML = sh;
+
+        // Tahmini oyun süresi (uzun oyunlarda uyarı)
+        var sn = (r.mod === 'blur' || r.mod === 'hizli') ? r.sure : r.soruSuresi;
+        var toplamDk = Math.round(r.soruSayisi * sn / 60);
+        var uyari = toplamDk > 12 ? ' <span style="color:#facc15;">⚠️ uzun sürebilir</span>' : '';
+        $('mpSureNot').innerHTML = '⏱️ Tahmini süre: <b>' + r.soruSayisi + ' soru × ' + sn + ' sn ≈ ' +
+            toplamDk + ' dakika</b>' + uyari;
 
         // Süre (blur ve hızlı modda sabit)
         var sureli = MP_MODLAR[r.mod].sureli;
@@ -19517,7 +19557,7 @@
         img.classList.add('mp-gizle');
         var kutu = $('mpEmojiKutu');
         kutu.textContent = emoji || '❓';
-        kutu.style.display = 'block';
+        kutu.classList.remove('mp-gizle');
     }
 
     // Görsel public/ içinde yoksa senin canlı sitenden dener.
@@ -19525,7 +19565,7 @@
     var MP_GORSEL_YEDEK = 'https://matexquiz.vercel.app/';
 
     function mpGorselYukle(src) {
-        $('mpEmojiKutu').style.display = 'none';
+        $('mpEmojiKutu').classList.add('mp-gizle');
         var img = $('mpGorsel');
         img.classList.remove('mp-gizle');
         img.onerror = function () {
@@ -19548,7 +19588,7 @@
         $('mpOyunSoruNo').textContent = 'Soru ' + (mpRoom.qIndex + 1) + '/' + mpRoom.total;
         $('mpGorsel').classList.add('mp-gizle');
         $('mpGorsel').style.filter = '';
-        $('mpEmojiKutu').style.display = 'none';
+        $('mpEmojiKutu').classList.add('mp-gizle');
         $('mpNetlikBar').style.display = 'none';
         $('mpFlasUyari').classList.add('mp-gizle');
         $('mpSecenekler').innerHTML = '';
