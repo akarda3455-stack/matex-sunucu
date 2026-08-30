@@ -1,5 +1,3 @@
-# Render bu dosyayı görürse ayarları OTOMATİK doldurur.
-# Yine de ekranda kontrol et: Build = npm install, Start = node server.js
 services:
   - type: web
     name: matex
