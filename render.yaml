@@ -1,0 +1,13 @@
+# Render bu dosyayı görürse ayarları OTOMATİK doldurur.
+# Yine de ekranda kontrol et: Build = npm install, Start = node server.js
+services:
+  - type: web
+    name: matex
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/durum
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
